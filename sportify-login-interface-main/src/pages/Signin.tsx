@@ -5,17 +5,66 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import sportsHero from '@/assets/sports-hero.jpg';
-import { Link } from "react-router-dom";
+import { Link ,useNavigate} from "react-router-dom";
+import axios from 'axios';
+import { Toast } from "@/components/toast";
+import {useAuth} from "@/components/AuthContext";
 
 const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [error,setError]=useState('');
+  const navigate = useNavigate();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const {login} = useAuth();
+
+  const [toast, setToast] = useState<{
+    message: string
+    type: "success" | "error"
+    isVisible: boolean
+  }>({
+    message: "",
+    type: "success",
+    isVisible: false,
+  })
+
+    const showToast = (message: string, type: "success" | "error") => {
+    setToast({ message, type, isVisible: true })
+  }
+
+  const hideToast = () => {
+    setToast(prev => ({ ...prev, isVisible: false }))
+  }
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle login logic here
-    console.log('Login attempted with:', { email, password });
+    
+    setError('')
+
+    const loginData ={
+      username,
+      password
+    }
+
+    try{
+      const response = await axios.post('http://localhost:8080/login',loginData);
+      console.log(response);
+      
+      if (response.status === 200) {
+        login();
+        showToast("Logged-in successfully!", "success")
+        setTimeout(() => {
+          navigate('/Home');
+        }, 2000)
+      } else {
+        throw new Error("Email address is already registered")
+      }
+
+    }catch(error){
+      setError ('And error occurred . Please retry')
+      showToast("Login failed", "error")
+    }
   };
 
   return (
@@ -35,6 +84,7 @@ const LoginPage = () => {
 
         <div className="w-full max-w-md space-y-8 relative z-10">
           {/* Logo and Branding */}
+
           <div className="text-center space-y-3">
             <div className="flex items-center justify-center space-x-3 mb-8">
               <div className="relative">
@@ -64,18 +114,18 @@ const LoginPage = () => {
                 {/* Email Field */}
                 <div className="space-y-2">
                   <Label htmlFor="email" className="text-gray-700 font-medium text-sm">
-                    Email Address
+                    Username
                   </Label>
                   <div className="relative group">
                     <Mail className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400 group-focus-within:text-blue-600 transition-colors duration-200" />
                     <Input
-                      id="email"
-                      type="email"
-                      placeholder="Enter your email"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
+                      id="username"
+                      type="username"
+                      placeholder="Enter your username"
+                      value={username}
+                      onChange={(e) => setUsername(e.target.value)}
                       className="pl-12 h-12 bg-blue-50/30 border-blue-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all duration-200 rounded-lg"
-                      required
+                      
                     />
                   </div>
                 </div>
@@ -171,6 +221,12 @@ const LoginPage = () => {
 
       {/* Right Side - Sports Image */}
       <div className="hidden lg:flex flex-1 relative overflow-hidden">
+          <Toast
+        message={toast.message}
+        type={toast.type}
+        isVisible={toast.isVisible}
+        onClose={hideToast}
+      />
         <div className="absolute inset-0 bg-gradient-to-br from-blue-900/90 via-sky-800/80 to-blue-700/90 z-10"></div>
         <img
           src="/Images/american-football.jpg?height=800&width=600"
@@ -178,6 +234,7 @@ const LoginPage = () => {
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 z-20 flex items-center justify-center p-12">
+                  
           <div className="text-center text-white space-y-8 max-w-lg">
             <div className="space-y-4">
               <h3 className="text-5xl font-bold leading-tight">

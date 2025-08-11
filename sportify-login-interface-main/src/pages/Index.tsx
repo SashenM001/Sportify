@@ -1,7 +1,9 @@
 import LoginPage from '@/pages/Signin';
+import Home from '@/pages/Home';
+
 
 const Index = () => {
-  return <LoginPage />;
+  return <LoginPage/>;
 };
 
 export default Index;
