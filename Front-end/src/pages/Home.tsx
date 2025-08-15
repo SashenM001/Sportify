@@ -7,8 +7,12 @@ import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Link } from "react-router-dom";
+<<<<<<< Updated upstream:Front-end/src/pages/Home.tsx
 import axiosInstance from "@/axiosConfig";
 import { useEffect } from "react";
+=======
+import axiosInstance from '@/axiosConfig';
+>>>>>>> Stashed changes:sportify-login-interface-main/src/pages/Home.tsx
 
 // Import player images
 import cricketPlayer1 from '@/assets/cricket-player-1.jpg';
@@ -18,6 +22,9 @@ import cricketPlayer4 from '@/assets/cricket-player-4.jpg';
 import cricketTeam from '@/assets/cricket-team.jpg';
 
 const Home = () => {
+
+  const response = axiosInstance.get('/users');
+  console.log(response) // Example API call to fetch posts
   const playerPosts = [
     {
       playerName: "Virat Kohli",
