@@ -51,20 +51,6 @@ public class UserController {
         userService.deleteUser(id);
     }
 
-    @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody LoginRequest  loginRequest, HttpSession session) {
-        try {
-            boolean isAuthenticated=false;
-            isAuthenticated = userService.authenticate(loginRequest.getUsername(), loginRequest.getPassword());
-            if (isAuthenticated) {
-                session.setAttribute("user", loginRequest.getUsername());
-                return ResponseEntity.ok("login was successful");
-            }else{
-                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid username or password");
-            }
-        }catch(Exception e){
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("An unknown error occurred");
-        }
-    }
+
 }
 

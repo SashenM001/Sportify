@@ -13,6 +13,7 @@ import axios from 'axios'
 import { Loader2 } from 'lucide-react';
 import axiosInstance from "@/axiosConfig";
 
+
 const Signup = () => {
   const [formData, setFormData] = useState({
     name: "",
@@ -207,9 +208,9 @@ const loadUsers = async () => {
         <div className="w-full max-w-md">
           
           <div className="text-center mb-8">
-            <div className="inline-flex items-center justify-center w-16 h-16 bg-white/10 backdrop-blur-md rounded-2xl mb-4 border border-white/20">
+            {/* <div className="inline-flex items-center justify-center w-16 h-16 bg-white/10 backdrop-blur-md rounded-2xl mb-4 border border-white/20">
               <img src="/Images/Logo 2.png" alt="Logo" className="w-10 h-10 object-contain" />
-            </div>
+            </div> */}
             <h1 className="text-3xl font-bold text-white mb-2">Join Sportify</h1>
             <p className="text-white/80 text-lg">Create your account to get started</p>
           </div>
@@ -385,7 +386,7 @@ const loadUsers = async () => {
                 
               </form>
 
-              <div className="relative py-4">
+              {/* <div className="relative py-4">
                 <div className="absolute inset-0 flex items-center">
                   <span className="w-full border-t border-gray-200" />
                 </div>
@@ -401,7 +402,7 @@ const loadUsers = async () => {
               >
               <img src="/Images/Google_logo.png" alt="Logo" className="w-5 h-5 object-contain" />
                 Continue with Google
-              </Button>
+              </Button> */}
               <div className="text-center pt-4">
                 <p className="text-sm text-gray-600">
                   Already have an account?{" "}
