@@ -4,7 +4,7 @@ import { ContactCard } from '@/components/ui/ContactCard';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card } from '@/components/ui/card';
-import { Sidebar } from '@/components/ui/Sidebar';
+import { Sidebar } from '@/components/ui/sidebar';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 

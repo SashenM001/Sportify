@@ -1,8 +1,6 @@
 package com.sportify.sportsmanagementsystem.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class User {
@@ -16,6 +14,9 @@ public class User {
     private String gender;
     private String email;
     private String password;
+
+    @Enumerated(EnumType.STRING)
+    private Role role = Role.USER;
 
     public Long getId() {
         return id;
@@ -71,6 +72,14 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
     }
 }
 

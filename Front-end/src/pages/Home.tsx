@@ -1,5 +1,5 @@
 import { Search, Plus, Zap } from 'lucide-react';
-import { Sidebar } from '@/components/ui/Sidebar';
+import { Sidebar } from '@/components/ui/sidebar';
 import { PlayerCard } from '@/components/ui/PlayerCard';
 import { NewsCard } from '@/components/ui/NewsCard';
 import { ContactCard } from '@/components/ui/ContactCardHome';
@@ -7,6 +7,8 @@ import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Link } from "react-router-dom";
+import axiosInstance from "@/axiosConfig";
+import { useEffect } from "react";
 
 // Import player images
 import cricketPlayer1 from '@/assets/cricket-player-1.jpg';
@@ -115,6 +117,15 @@ const Home = () => {
     }
   ];
 
+  useEffect(() => {
+  loadUsers();
+}, []);
+
+const loadUsers = async () => {
+  const result = await axiosInstance.get("http://localhost:8080/users");
+  console.log(result.data);
+};
+
   return (
     <div className="min-h-screen bg-blue-100 bg-background flex overflow-y-auto scrollbar-thin scrollbar-thumb-blue-300">
       {/* Sidebar */}
@@ -159,7 +170,7 @@ const Home = () => {
         </div>
 
         {/* Right Sidebar */}
-        <div className="w-85 h-screen overflow-y-auto border-l border-gray-200 bg-white">
+        <div className="w-80 h-screen overflow-y-auto border-l border-gray-200 bg-white">
           {/* Trending News */}
           <Card className="p-4">
             <div className="flex items-center space-x-2 mb-4">
