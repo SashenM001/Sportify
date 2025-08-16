@@ -1,5 +1,6 @@
 package com.sportify.sportsmanagementsystem.controller;
 
+import com.sportify.sportsmanagementsystem.model.User;
 import com.sportify.sportsmanagementsystem.security.jwt.JwtUtil;
 import com.sportify.sportsmanagementsystem.model.LoginRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,4 +43,7 @@ public class AuthController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("An unknown error occurred");
         }
     }
+
+    @PostMapping("/signup")
+    public ResponseEntity<?> newUser(@RequestBody User newUser) {}
 }

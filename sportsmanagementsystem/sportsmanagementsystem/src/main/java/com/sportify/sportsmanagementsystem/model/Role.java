@@ -1,6 +1,12 @@
 package com.sportify.sportsmanagementsystem.model;
 
 public enum Role {
+        ADMIN,
         USER,
-        ADMIN
+        PLAYER,
+        COACH,
+        REFEREE,
+        CLUB,
+        TEAM,
+        FACILITY
 }
