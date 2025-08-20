@@ -1,12 +1,10 @@
 package com.sportify.sportsmanagementsystem.controller;
 
 
-import com.sportify.sportsmanagementsystem.exception.UserNotFoundException;
-import com.sportify.sportsmanagementsystem.model.LoginRequest;
+import com.sportify.sportsmanagementsystem.dto.UserDto;
 import com.sportify.sportsmanagementsystem.model.User;
-import com.sportify.sportsmanagementsystem.repository.UserRepository;
 import com.sportify.sportsmanagementsystem.service.UserService;
-import jakarta.servlet.http.HttpSession;
+import com.sportify.sportsmanagementsystem.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,11 +13,10 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@CrossOrigin( "http://localhost:8081")
+@RequestMapping("/sportify")
 public class UserController {
 
-
-    private UserService userService;;
+    private UserService userService;
 
     @Autowired
     public UserController(UserService userService) {
@@ -27,28 +24,32 @@ public class UserController {
     }
 
 
-    @PostMapping("/register")
-    public ResponseEntity<User> newUser(@RequestBody() User user) {
-        User newUser = userService.addUser(user);
-        return ResponseEntity.status(HttpStatus.CREATED).body(newUser);
+    @PostMapping("/users/register")
+    @ResponseStatus(HttpStatus.CREATED)
+    public ResponseEntity<UserDto> newUser(@RequestBody() UserDto userDto) {
+        return new ResponseEntity<>(userService.createUser(userDto),HttpStatus.CREATED);
     }
 
     @GetMapping("/users")
-    List<User> getAllUsers() { return userService.getUsers(); }
-
-    @GetMapping("/user/{id}")
-    public User getUserById(@PathVariable Long id) {
-        return userService.getUser(id);
+    public ResponseEntity<List<UserDto>> getAllUsers() {
+        return new ResponseEntity<>(userService.getUsers(),HttpStatus.OK);
     }
 
-    @PutMapping("/user/{id}")
-    public User updateUser(@RequestBody User user,@PathVariable("id") Long id){
-        return userService.updateUser(user);
+    @GetMapping("/users/{id}")
+    public ResponseEntity<UserDto> getUserById(@PathVariable Long id) {
+        return ResponseEntity.ok(userService.getUserById(id));
     }
 
-    @DeleteMapping("/user/{id}")
-    public void deleteUser(@PathVariable("id") Long id){
-        userService.deleteUser(id);
+    @PutMapping("/user/{id}/update")
+    public ResponseEntity<UserDto> updateUser(@RequestBody UserDto userDto,@PathVariable("id") Long id){
+        UserDto updatedUser = userService.updateUser(userDto,id);
+        return new ResponseEntity<>(updatedUser,HttpStatus.OK);
+    }
+
+    @DeleteMapping("/user/{id}/delete")
+    public ResponseEntity<String> deleteUser(@PathVariable("id") Long id){
+        userService.deleteUserById(id);
+        return ResponseEntity.ok("User Deleted");
     }
 
 

@@ -1,41 +1,19 @@
 package com.sportify.sportsmanagementsystem.service;
 
-import com.sportify.sportsmanagementsystem.model.MediaPost;
-import com.sportify.sportsmanagementsystem.repository.MediaPostRepository;
-import com.sportify.sportsmanagementsystem.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import com.sportify.sportsmanagementsystem.dto.MediaPostDto;
+import com.sportify.sportsmanagementsystem.model.User;
 
 import java.util.List;
 
-@Service
-public class MediaPostService {
+public interface MediaPostService {
 
-    private final MediaPostRepository mediaPostRepository;
+    MediaPostDto createMediaPost(Long userId, MediaPostDto mediaPostDto);
 
-    @Autowired
-    public MediaPostService(MediaPostRepository mediaPostRepository) {
-        this.mediaPostRepository = mediaPostRepository;
-    }
+    List<MediaPostDto> getMediaPostsByUserId(Long userId);
 
-    public List<MediaPost> getAllMediaPosts() {
-        return mediaPostRepository.findAll();
-    }
+    MediaPostDto getMediaPostById(Long postId,Long userId);
 
-    public MediaPost getMediaPostById(Long postId) {
-        return mediaPostRepository.findByPostId(postId);
-    }
+    MediaPostDto updateMediaPost(Long postId,Long userId, MediaPostDto mediaPostDto);
 
-    public MediaPost createMediaPost(MediaPost mediaPost) {
-        return mediaPostRepository.save(mediaPost);
-    }
-
-    public void deleteMediaPost(Long postId) {
-        mediaPostRepository.deleteById(postId);
-    }
-
-    // Custom business logic methods
-    public List<MediaPost> getMediaPostsByUserId(Long userId) {
-        return mediaPostRepository.findByUserId(userId);
-    }
+    void deleteMediaPost(Long userId,Long postId);
 }
