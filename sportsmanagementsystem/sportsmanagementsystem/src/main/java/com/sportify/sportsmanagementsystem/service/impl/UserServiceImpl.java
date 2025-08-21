@@ -56,6 +56,7 @@ public class UserServiceImpl implements UserService {
         userDto.setName(user.getName());
         userDto.setUsername(user.getUsername());
         userDto.setPassword(user.getPassword());
+        userDto.setDateOfBirth(user.getDateOfBirth());
         userDto.setGender(user.getGender());
         userDto.setEmail(user.getEmail());
         return userDto;
@@ -67,6 +68,7 @@ public class UserServiceImpl implements UserService {
         user.setUsername(userDto.getUsername());
         user.setPassword(userDto.getPassword());
         user.setGender(userDto.getGender());
+        user.setDateOfBirth(userDto.getDateOfBirth());
         user.setEmail(userDto.getEmail());
         return user;
     }

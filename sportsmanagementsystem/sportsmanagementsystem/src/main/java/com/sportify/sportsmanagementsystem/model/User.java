@@ -30,5 +30,9 @@ public class User {
     @OneToMany(mappedBy="user" , cascade = CascadeType.ALL,orphanRemoval = true)
     private List<MediaPost> mediaPosts = new ArrayList<MediaPost>();
 
+    @ManyToMany(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
+    @JoinTable(name="user_roles",joinColumns = @JoinColumn(name="user_id",referencedColumnName = "id"),
+    inverseJoinColumns = @JoinColumn(name="role_id",referencedColumnName = "roleId"))
+    private List<Role> roles = new ArrayList<>();
 }
 
