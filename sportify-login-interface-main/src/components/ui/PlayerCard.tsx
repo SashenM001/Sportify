@@ -1,8 +1,6 @@
 import { Heart, MessageCircle, Share2, MoreHorizontal } from 'lucide-react';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import axiosInstance from "@/axiosConfig";
-import { useEffect } from "react";
 
 interface PlayerCardProps {
   playerName: string;
@@ -12,8 +10,6 @@ interface PlayerCardProps {
   comments: number;
   timeAgo: string;
 }
-
-
 
 export function PlayerCard({ playerName, playerImage, caption, likes, comments, timeAgo }: PlayerCardProps) {
   return (

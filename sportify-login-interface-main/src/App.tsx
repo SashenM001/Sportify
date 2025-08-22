@@ -10,11 +10,6 @@ import NotFound from "./pages/NotFound";
 import Home from "./pages/Home";
 import Contacts from "./pages/Contacts"
 import CreatePost from "./pages/CreatePost";
-import Teams from "./pages/Teams";
-import Bookings from "./pages/Bookings";
-import Events from "./pages/Events";
-import Merchandise from "./pages/Merchandise";
-import Sponserships from "./pages/Sponserships";
 import { AuthProvider } from "./components/AuthContext";
 import ProtectedRoute from "./components/ProtectedRoute";
 
@@ -34,11 +29,7 @@ const App = () => (
           <Route path="/signin" element={<Signin />} />
           <Route path="/Contacts" element={<Contacts />} />
           <Route path="/CreatePost" element={<CreatePost />} />
-          <Route path="/Teams" element={<Teams />} />
-          <Route path="/Bookings" element={<Bookings />} />
-          <Route path="/Events" element={<Events />} />
-          <Route path="/Merchandise" element={<Merchandise />} />
-          <Route path="/Sponserships" element={<Sponserships />} />
+
           <Route path="/Home" element={<ProtectedRoute><Home></Home></ProtectedRoute>} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />

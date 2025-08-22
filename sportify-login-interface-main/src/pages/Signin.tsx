@@ -89,9 +89,9 @@ const LoginPage = () => {
             <div className="flex items-center justify-center space-x-3 mb-8">
               <div className="relative">
                 
-                {/* <div className="inline-flex items-center justify-center w-16 h-16 bg-white/10 backdrop-blur-md rounded-2xl mb-4 border border-white/20">
+                <div className="inline-flex items-center justify-center w-16 h-16 bg-white/10 backdrop-blur-md rounded-2xl mb-4 border border-white/20">
                   <img src="/Images/Logo 2.png" alt="Logo" className="w-10 h-20 object-contain" />
-                </div> */}
+                </div>
                 <h1 className="text-3xl font-bold bg-gradient-to-r from-blue-900 to-blue-600 bg-clip-text text-transparent">
                 Sportify
               </h1>
@@ -176,7 +176,7 @@ const LoginPage = () => {
                   </span>
                 </Button>
 
-                {/* Divider
+                {/* Divider */}
                 <div className="relative">
                   <div className="absolute inset-0 flex items-center">
                     <span className="w-full border-t border-gray-200" />
@@ -186,7 +186,7 @@ const LoginPage = () => {
                   </div>
                 </div>
 
-                { Social Login Buttons
+                Social Login Buttons
                 <Button
                 variant="outline"
                 size="lg"
@@ -194,7 +194,7 @@ const LoginPage = () => {
               >
               <img src="/Images/Google_logo.png" alt="Logo" className="w-5 h-5 object-contain" />
                 Continue with Google
-              </Button> } */}
+              </Button>
 
                 {/* Sign Up Link */}
                 <div className="text-center pt-4">

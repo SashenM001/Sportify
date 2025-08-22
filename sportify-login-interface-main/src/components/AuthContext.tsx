@@ -23,9 +23,7 @@ export const AuthProvider = ({children}) => {
     const logout = () => {
         setIsAuthenticated(false)
         localStorage.removeItem('isAuthenticated')
-        localStorage.removeItem('jwt_token')
     }
-    
 
     return (
         <AuthContext.Provider value={{isAuthenticated,login,logout}}>
